@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="AlertaEscolar.Api/AlertaEscolar.Api.csproj" Id="3bcf88e5-dc8c-43dd-a527-1ea797837e10" />
+  <Project Path="AlertaEscolar.Desktop/AlertaEscolar.Desktop.csproj" />
+  <Project Path="AlertaEscolar.Shared/AlertaEscolar.Shared.csproj" Id="fc0d46ef-ad6f-4315-85e0-ea478a4f606a" />
+</Solution>
