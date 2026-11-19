@@ -4,3 +4,7 @@
 **/.env
 **/.env.*
 **/appsettings.Development.json
+# Base de datos local de Alerta Escolar
+**/alertaescolar.db
+**/alertaescolar.db-shm
+**/alertaescolar.db-wal

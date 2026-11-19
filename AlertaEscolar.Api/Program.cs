@@ -1,4 +1,12 @@
+using AlertaEscolar.Api.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<AlertaEscolarDbContext>(options =>
+    options.UseSqlite(
+        builder.Configuration.GetConnectionString("ConexionSQLite")));
+
 
 // Add services to the container.
 
@@ -21,3 +29,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
