@@ -91,6 +91,10 @@ namespace AlertaEscolar.Api.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Rol")
                         .IsRequired()
                         .HasColumnType("TEXT");

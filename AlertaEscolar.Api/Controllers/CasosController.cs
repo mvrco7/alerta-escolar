@@ -1,13 +1,15 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AlertaEscolar.Api.Data;
 using AlertaEscolar.Shared.Models;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace AlertaEscolar.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class CasosController : ControllerBase
     {
         private readonly AlertaEscolarDbContext _context;

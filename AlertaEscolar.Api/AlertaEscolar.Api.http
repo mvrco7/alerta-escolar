@@ -19,7 +19,6 @@ Content-Type: application/json
 
 ###
 
-
 ### Registrar caso de prueba en SQLite
 POST https://localhost:7299/api/casos
 Content-Type: application/json
@@ -32,7 +31,7 @@ Content-Type: application/json
 
 ### Consultar casos registrados
 GET https://localhost:7299/api/casos
-
+Authorization: Bearer REEMPLAZAR_CON_TOKEN
 
 ### Actualizar estado del caso 1
 PUT https://localhost:7299/api/casos/1/estado
@@ -53,3 +52,54 @@ Content-Type: application/json
   
 ### Consultar historial del caso 1
 GET https://localhost:7299/api/casos/1/historial
+
+  
+### Registrar usuario ficticio
+POST https://localhost:7299/api/usuarios/registrar
+Content-Type: application/json
+
+{
+  "nombre": "Usuario de Prueba",
+  "correo": "prueba@alertaescolar.test",
+  "password": "PruebaEscolar2026!"
+}
+
+### Iniciar sesión con usuario de prueba
+POST https://localhost:7299/api/usuarios/login
+Content-Type: application/json
+
+{
+  "correo": "prueba@alertaescolar.test",
+  "password": "PruebaEscolar2026!"
+}
+
+### Inicio de sesión con contraseña incorrecta
+POST https://localhost:7299/api/usuarios/login
+Content-Type: application/json
+
+{
+  "correo": "prueba@alertaescolar.test",
+  "password": "ClaveIncorrecta2026!"
+}
+
+### Iniciar sesion como administrador
+POST https://localhost:7299/api/usuarios/login
+Content-Type: application/json
+
+{
+  "correo": "admin@alertaescolar.test",
+  "password": "Alertaescolar2026"
+}
+
+### Registrar usuario con permisos de administrador
+POST https://localhost:7299/api/usuarios/registrar
+Authorization: Bearer REEMPLAZAR_CON_TOKEN
+Content-Type: application/json
+{
+  "nombre": "Docente de Prueba",
+  "correo": "docente@alertaescolar.test",
+  "password": "PruebaDocente2026!"
+}
+
+
+

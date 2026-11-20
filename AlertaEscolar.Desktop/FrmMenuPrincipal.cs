@@ -1,0 +1,119 @@
+﻿
+using System;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using AlertaEscolar.Shared.Models;
+
+namespace AlertaEscolar.Desktop
+{
+    public partial class FrmMenuPrincipal : Form
+    {
+        public FrmMenuPrincipal()
+        {
+            InitializeComponent();
+
+            lblBienvenida.Text =
+                $"Bienvenido, {SesionUsuario.Nombre}";
+
+            this.Load += FrmMenuPrincipal_Load;
+        }
+
+        private async void FrmMenuPrincipal_Load(
+            object? sender, EventArgs e)
+        {
+            await CargarCasosAsync();
+        }
+
+        private async Task CargarCasosAsync()
+        {
+            try
+            {
+                using HttpClient cliente = new HttpClient
+                {
+                    BaseAddress =
+                        new Uri("https://localhost:7299/")
+                };
+
+                cliente.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue(
+                        "Bearer",
+                        SesionUsuario.Token);
+
+                var casos = await cliente.GetFromJsonAsync<
+                    List<Caso>>("api/casos");
+
+                if (casos == null)
+                {
+                    return;
+                }
+
+                // Actualizar las estadísticas
+                lblTotalCasos.Text =
+                    casos.Count.ToString();
+
+                lblPendientes.Text =
+                    casos.Count(c =>
+                        c.Estado.Equals(
+                            "Pendiente",
+                            StringComparison.OrdinalIgnoreCase))
+                    .ToString();
+
+                label5.Text =
+                    casos.Count(c =>
+                        c.Estado.Equals(
+                            "En seguimiento",
+                            StringComparison.OrdinalIgnoreCase))
+                    .ToString();
+
+                label7.Text =
+                    casos.Count(c =>
+                        c.Estado.Equals(
+                            "Cerrado",
+                            StringComparison.OrdinalIgnoreCase))
+                    .ToString();
+
+                // Mostrar los casos más recientes
+                dvgCasosRecientes.Rows.Clear();
+
+                foreach (var caso in casos
+                    .OrderByDescending(c => c.FechaRegistro)
+                    .Take(10))
+                {
+                    dvgCasosRecientes.Rows.Add(
+                        caso.Id,
+                        caso.FechaRegistro.ToLocalTime()
+                            .ToString("dd-MM-yyyy"),
+                        caso.Titulo,
+                        caso.UsuarioResponsableId,
+                        caso.Estado);
+                }
+            }
+            catch (HttpRequestException)
+            {
+                MessageBox.Show(
+                    "No se pudo conectar con la API de Alerta Escolar.",
+                    "Error de conexión",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    $"No se pudieron cargar los casos: {ex.Message}",
+                    "Alerta Escolar",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void lblTotalCasos_Click(
+            object sender, EventArgs e)
+        {
+
+        }
+    }
+}

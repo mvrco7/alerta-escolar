@@ -9,7 +9,10 @@ namespace AlertaEscolar.Shared.Models
 
         public string Correo { get; set; } = string.Empty;
 
-        public string Rol { get; set; } = "Encargado de Convivencia Escolar";
+        public string PasswordHash { get; set; } = string.Empty;
+
+        public string Rol { get; set; } =
+            "Encargado de Convivencia Escolar";
 
         public bool Activo { get; set; } = true;
     }
