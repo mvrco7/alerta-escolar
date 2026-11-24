@@ -159,6 +159,7 @@
             btnCasos.TabIndex = 3;
             btnCasos.Text = "☷  Casos";
             btnCasos.UseVisualStyleBackColor = false;
+            btnCasos.Click += btnCasos_Click;
             // 
             // btnRegistrarCaso
             // 
@@ -174,6 +175,7 @@
             btnRegistrarCaso.TabIndex = 2;
             btnRegistrarCaso.Text = "⊕  Registrar caso";
             btnRegistrarCaso.UseVisualStyleBackColor = false;
+            btnRegistrarCaso.Click += btnRegistrarCaso_Click;
             // 
             // btnInicio
             // 

@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -51,32 +52,38 @@ namespace AlertaEscolar.Desktop
                     return;
                 }
 
-                // Actualizar las estadísticas
+                // Actualizar el total de casos
                 lblTotalCasos.Text =
                     casos.Count.ToString();
 
+                // Actualizar casos pendientes
                 lblPendientes.Text =
                     casos.Count(c =>
-                        c.Estado.Equals(
+                        string.Equals(
+                            c.Estado,
                             "Pendiente",
                             StringComparison.OrdinalIgnoreCase))
                     .ToString();
 
+                // Actualizar casos en seguimiento
                 label5.Text =
                     casos.Count(c =>
-                        c.Estado.Equals(
+                        string.Equals(
+                            c.Estado,
                             "En seguimiento",
                             StringComparison.OrdinalIgnoreCase))
                     .ToString();
 
+                // Actualizar casos cerrados
                 label7.Text =
                     casos.Count(c =>
-                        c.Estado.Equals(
+                        string.Equals(
+                            c.Estado,
                             "Cerrado",
                             StringComparison.OrdinalIgnoreCase))
                     .ToString();
 
-                // Mostrar los casos más recientes
+                // Actualizar la tabla de casos recientes
                 dvgCasosRecientes.Rows.Clear();
 
                 foreach (var caso in casos
@@ -114,6 +121,32 @@ namespace AlertaEscolar.Desktop
             object sender, EventArgs e)
         {
 
+        }
+
+        // Abrir el formulario de registro
+        private async void btnRegistrarCaso_Click(
+            object sender, EventArgs e)
+        {
+            using (FrmRegistrarCaso formulario = new FrmRegistrarCaso())
+            {
+                formulario.ShowDialog(this);
+            }
+
+            // Actualizar el panel al regresar
+            await CargarCasosAsync();
+        }
+
+        // Abrir el listado de casos
+        private async void btnCasos_Click(
+            object sender, EventArgs e)
+        {
+            using (FrmListadoCasos formulario = new FrmListadoCasos())
+            {
+                formulario.ShowDialog(this);
+            }
+
+            // Actualizar el panel al regresar
+            await CargarCasosAsync();
         }
     }
 }
