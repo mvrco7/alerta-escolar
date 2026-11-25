@@ -35,6 +35,7 @@
             lblCorreo = new Label();
             lblPassword = new Label();
             btnIngresar = new Button();
+            btnVerPassword = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -58,9 +59,10 @@
             // 
             // txtPassword
             // 
+            txtPassword.BorderStyle = BorderStyle.None;
             txtPassword.Location = new Point(240, 183);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(213, 27);
+            txtPassword.Size = new Size(213, 20);
             txtPassword.TabIndex = 2;
             txtPassword.UseSystemPasswordChar = true;
             // 
@@ -95,12 +97,30 @@
             btnIngresar.UseVisualStyleBackColor = false;
             btnIngresar.Click += btnIngresar_Click;
             // 
+            // btnVerPassword
+            // 
+            btnVerPassword.BackColor = Color.White;
+            btnVerPassword.Cursor = Cursors.Hand;
+            btnVerPassword.FlatAppearance.BorderSize = 0;
+            btnVerPassword.FlatStyle = FlatStyle.Flat;
+            btnVerPassword.Font = new Font("Segoe UI Emoji", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnVerPassword.ForeColor = Color.SteelBlue;
+            btnVerPassword.Location = new Point(412, 181);
+            btnVerPassword.Name = "btnVerPassword";
+            btnVerPassword.Size = new Size(41, 25);
+            btnVerPassword.TabIndex = 6;
+            btnVerPassword.TabStop = false;
+            btnVerPassword.Text = "👁";
+            btnVerPassword.UseVisualStyleBackColor = false;
+            btnVerPassword.Click += btnVerPassword_Click;
+            // 
             // FrmLogin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(482, 353);
+            Controls.Add(btnVerPassword);
             Controls.Add(btnIngresar);
             Controls.Add(lblPassword);
             Controls.Add(lblCorreo);
@@ -125,5 +145,6 @@
         private Label lblCorreo;
         private Label lblPassword;
         private Button btnIngresar;
+        private Button btnVerPassword;
     }
 }

@@ -9,6 +9,11 @@ namespace AlertaEscolar.Desktop
         public FrmLogin()
         {
             InitializeComponent();
+            txtPassword.AutoSize = false;
+            txtPassword.Height = 27;
+
+            btnVerPassword.Height = txtPassword.Height;
+            btnVerPassword.Top = txtPassword.Top;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -93,6 +98,8 @@ namespace AlertaEscolar.Desktop
                     {
                         SesionUsuario.CerrarSesion();
                         txtPassword.Clear();
+                        txtPassword.UseSystemPasswordChar = true;
+                        btnVerPassword.Text = "👁";
                         this.Show();
                     }
                 }
@@ -135,6 +142,17 @@ namespace AlertaEscolar.Desktop
             {
                 btnIngresar.Enabled = true;
             }
+        }
+
+        private void btnVerPassword_Click(object sender, EventArgs e)
+        {
+            txtPassword.UseSystemPasswordChar =
+       !txtPassword.UseSystemPasswordChar;
+
+            btnVerPassword.Text =
+                txtPassword.UseSystemPasswordChar ? "👁" : "🙈";
+
+            txtPassword.Focus();
         }
     }
 }

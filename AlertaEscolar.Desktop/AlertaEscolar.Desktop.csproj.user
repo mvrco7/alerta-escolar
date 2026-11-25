@@ -16,7 +16,13 @@
     <Compile Update="FrmMenuPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FrmNuevoUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FrmRegistrarCaso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FrmUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

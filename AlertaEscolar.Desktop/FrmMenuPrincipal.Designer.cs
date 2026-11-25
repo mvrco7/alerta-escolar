@@ -99,6 +99,7 @@
             btnCerrarSesion.TabIndex = 7;
             btnCerrarSesion.Text = "↪  Cerrar sesión";
             btnCerrarSesion.UseVisualStyleBackColor = false;
+            btnCerrarSesion.Click += btnCerrarSesion_Click;
             // 
             // btnReportes
             // 
@@ -129,6 +130,7 @@
             btnUsuarios.TabIndex = 5;
             btnUsuarios.Text = "♙  Usuarios";
             btnUsuarios.UseVisualStyleBackColor = false;
+            btnUsuarios.Click += btnUsuarios_Click;
             // 
             // btnHistorial
             // 
@@ -144,6 +146,7 @@
             btnHistorial.TabIndex = 4;
             btnHistorial.Text = "◷  Historial";
             btnHistorial.UseVisualStyleBackColor = false;
+            btnHistorial.Click += btnHistorial_Click;
             // 
             // btnCasos
             // 

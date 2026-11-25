@@ -148,5 +148,47 @@ namespace AlertaEscolar.Desktop
             // Actualizar el panel al regresar
             await CargarCasosAsync();
         }
+
+        private void btnHistorial_Click(object sender, EventArgs e)
+        {
+            using (FrmHistorial formulario = new FrmHistorial())
+            {
+                formulario.ShowDialog(this);
+            }
+        }
+
+        private void btnUsuarios_Click(object sender, EventArgs e)
+        {
+            if (SesionUsuario.Rol != "Administrador")
+            {
+                MessageBox.Show(
+                    "No tiene permisos para administrar usuarios.",
+                    "Alerta Escolar",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
+            using (FrmUsuarios formulario = new FrmUsuarios())
+            {
+                formulario.ShowDialog(this);
+            }
+        }
+
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show(
+        "¿Está seguro de que desea cerrar sesión?",
+        "Alerta Escolar - Cerrar sesión",
+        MessageBoxButtons.YesNo,
+        MessageBoxIcon.Question,
+        MessageBoxDefaultButton.Button2);
+
+            if (resultado == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
     }
 }

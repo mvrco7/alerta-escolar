@@ -1,5 +1,4 @@
-﻿
-using AlertaEscolar.Api.Data;
+﻿using AlertaEscolar.Api.Data;
 using AlertaEscolar.Shared.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +8,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
-
 
 namespace AlertaEscolar.Api.Controllers
 {
@@ -27,6 +25,27 @@ namespace AlertaEscolar.Api.Controllers
         {
             _context = context;
             _configuration = configuration;
+        }
+
+        // CONSULTAR TODOS LOS USUARIOS
+        [Authorize(Roles = "Administrador")]
+        [HttpGet]
+        public async Task<IActionResult> ObtenerUsuarios()
+        {
+            var usuarios = await _context.Usuarios
+                .AsNoTracking()
+                .OrderBy(u => u.Id)
+                .Select(u => new
+                {
+                    u.Id,
+                    u.Nombre,
+                    u.Correo,
+                    u.Rol,
+                    u.Activo
+                })
+                .ToListAsync();
+
+            return Ok(usuarios);
         }
 
         // REGISTRAR UN USUARIO

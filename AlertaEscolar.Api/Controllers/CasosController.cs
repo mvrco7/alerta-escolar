@@ -4,7 +4,6 @@ using AlertaEscolar.Api.Data;
 using AlertaEscolar.Shared.Models;
 using Microsoft.AspNetCore.Authorization;
 
-
 namespace AlertaEscolar.Api.Controllers
 {
     [ApiController]
@@ -133,6 +132,19 @@ namespace AlertaEscolar.Api.Controllers
             var historial = await _context.HistorialCasos
                 .Where(h => h.CasoId == id)
                 .OrderBy(h => h.Fecha)
+                .ToListAsync();
+
+            return Ok(historial);
+        }
+
+        // CONSULTAR EL HISTORIAL GENERAL DE TODOS LOS CASOS
+        [HttpGet("historial")]
+        public async Task<ActionResult<List<HistorialCaso>>>
+            ObtenerHistorialGeneral()
+        {
+            var historial = await _context.HistorialCasos
+                .AsNoTracking()
+                .OrderByDescending(h => h.Fecha)
                 .ToListAsync();
 
             return Ok(historial);
