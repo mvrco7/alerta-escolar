@@ -1,0 +1,35 @@
+
+# Archivos de Git
+.git/
+.gitignore
+
+# Archivos temporales de Visual Studio
+.vs/
+**/bin/
+**/obj/
+**/*.user
+**/*.suo
+
+# Configuraciones sensibles
+**/.env
+**/.env.*
+**/secrets.json
+**/appsettings.Development.json
+**/appsettings.Local.json
+
+# Bases de datos locales
+**/*.db
+**/*.db-shm
+**/*.db-wal
+**/*.db-journal
+**/*.sqlite
+**/*.sqlite3
+
+# Certificados y claves privadas
+**/*.pfx
+**/*.p12
+**/*.key
+**/*.pem
+
+# Proyecto de escritorio Windows Forms
+AlertaEscolar.Desktop/

@@ -143,7 +143,12 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseHttpsRedirection();
+// REDIRECCION HTTPS EN DESARROLLO
+// En produccion, Render administra HTTPS.
+if (app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
 
 // AUTENTICACION ANTES DE AUTORIZACION
 app.UseAuthentication();
