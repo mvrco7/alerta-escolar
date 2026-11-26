@@ -149,7 +149,9 @@ namespace AlertaEscolar.Desktop
             await CargarCasosAsync();
         }
 
-        private void btnHistorial_Click(object sender, EventArgs e)
+        // Abrir el historial general
+        private void btnHistorial_Click(
+            object sender, EventArgs e)
         {
             using (FrmHistorial formulario = new FrmHistorial())
             {
@@ -157,7 +159,9 @@ namespace AlertaEscolar.Desktop
             }
         }
 
-        private void btnUsuarios_Click(object sender, EventArgs e)
+        // Abrir la administración de usuarios
+        private void btnUsuarios_Click(
+            object sender, EventArgs e)
         {
             if (SesionUsuario.Rol != "Administrador")
             {
@@ -176,14 +180,26 @@ namespace AlertaEscolar.Desktop
             }
         }
 
-        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        // Abrir el formulario de reportes y estadísticas
+        private void btnReportes_Click(
+            object sender, EventArgs e)
+        {
+            using (FrmReportes formulario = new FrmReportes())
+            {
+                formulario.ShowDialog(this);
+            }
+        }
+
+        // Cerrar la sesión del usuario
+        private void btnCerrarSesion_Click(
+            object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show(
-        "¿Está seguro de que desea cerrar sesión?",
-        "Alerta Escolar - Cerrar sesión",
-        MessageBoxButtons.YesNo,
-        MessageBoxIcon.Question,
-        MessageBoxDefaultButton.Button2);
+                "¿Está seguro de que desea cerrar sesión?",
+                "Alerta Escolar - Cerrar sesión",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2);
 
             if (resultado == DialogResult.Yes)
             {

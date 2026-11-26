@@ -115,6 +115,7 @@
             btnReportes.TabIndex = 6;
             btnReportes.Text = "▥  Reportes";
             btnReportes.UseVisualStyleBackColor = false;
+            btnReportes.Click += btnReportes_Click;
             // 
             // btnUsuarios
             // 
