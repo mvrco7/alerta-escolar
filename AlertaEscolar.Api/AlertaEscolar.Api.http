@@ -1,105 +1,28 @@
-
 @AlertaEscolar.Api_HostAddress = https://localhost:7299
 
-### Consultar todos los casos
+### PRUEBA 1 - Consultar usuarios sin autenticacion
+
+GET {{AlertaEscolar.Api_HostAddress}}/api/usuarios
+Accept: application/json
+
+###
+
+### PRUEBA 2 - Consultar casos sin autenticacion
+
 GET {{AlertaEscolar.Api_HostAddress}}/api/casos
 Accept: application/json
 
 ###
 
-### Registrar un caso de prueba
-POST {{AlertaEscolar.Api_HostAddress}}/api/casos
+### PRUEBA 3 - Inicio de sesion con credenciales incorrectas
+
+POST {{AlertaEscolar.Api_HostAddress}}/api/usuarios/login
 Content-Type: application/json
 
 {
-  "titulo": "Reporte de prueba",
-  "descripcion": "Caso ficticio para comprobar el funcionamiento del sistema.",
-  "usuarioResponsableId": 1
+  "correo": "inexistente@example.com",
+  "password": "CredencialFicticiaIncorrecta"
 }
 
 ###
-
-### Registrar caso de prueba en SQLite
-POST https://localhost:7299/api/casos
-Content-Type: application/json
-
-{
-  "titulo": "Reporte de prueba SQLite",
-  "descripcion": "Caso ficticio para comprobar que los registros se guardan permanentemente.",
-  "usuarioResponsableId": 1
-}
-
-### Consultar casos registrados
-GET https://localhost:7299/api/casos
-Authorization: Bearer REEMPLAZAR_CON_TOKEN
-
-### Actualizar estado del caso 1
-PUT https://localhost:7299/api/casos/1/estado
-Content-Type: application/json
-
-{
-  "estado": "En seguimiento"
-}
-
-
-### Cambiar el caso 1 a Cerrado
-PUT https://localhost:7299/api/casos/1/estado
-Content-Type: application/json
-
-{
-  "estado": "Cerrado"
-}
-  
-### Consultar historial del caso 1
-GET https://localhost:7299/api/casos/1/historial
-
-  
-### Registrar usuario ficticio
-POST https://localhost:7299/api/usuarios/registrar
-Content-Type: application/json
-
-{
-  "nombre": "Usuario de Prueba",
-  "correo": "prueba@alertaescolar.test",
-  "password": "PruebaEscolar2026!"
-}
-
-### Iniciar sesión con usuario de prueba
-POST https://localhost:7299/api/usuarios/login
-Content-Type: application/json
-
-{
-  "correo": "prueba@alertaescolar.test",
-  "password": "PruebaEscolar2026!"
-}
-
-### Inicio de sesión con contraseña incorrecta
-POST https://localhost:7299/api/usuarios/login
-Content-Type: application/json
-
-{
-  "correo": "prueba@alertaescolar.test",
-  "password": "ClaveIncorrecta2026!"
-}
-
-### Iniciar sesion como administrador
-POST https://localhost:7299/api/usuarios/login
-Content-Type: application/json
-
-{
-  "correo": "admin@alertaescolar.test",
-  "password": "Alertaescolar2026"
-}
-
-### Registrar usuario con permisos de administrador
-POST https://localhost:7299/api/usuarios/registrar
-Authorization: Bearer REEMPLAZAR_CON_TOKEN
-Content-Type: application/json
-{
-  "nombre": "Docente de Prueba",
-  "correo": "docente@alertaescolar.test",
-  "password": "PruebaDocente2026!"
-}
-
-
 

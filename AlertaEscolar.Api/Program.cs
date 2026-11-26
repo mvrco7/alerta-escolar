@@ -8,10 +8,18 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// CONFIGURACION DE BASE DE DATOS SQLITE
-builder.Services.AddDbContext<AlertaEscolarDbContext>(options =>
-    options.UseSqlite(
-        builder.Configuration.GetConnectionString("ConexionSQLite")));
+// CONFIGURACION DE BASE DE DATOS POSTGRESQL - NEON
+var conexionPostgreSQL =
+    builder.Configuration.GetConnectionString("ConexionPostgreSQL");
+
+if (string.IsNullOrWhiteSpace(conexionPostgreSQL))
+{
+    throw new InvalidOperationException(
+        "Debes configurar la cadena ConexionPostgreSQL.");
+}
+
+builder.Services.AddDbContext<AlertaEscolarPostgreSqlDbContext>(
+    options => options.UseNpgsql(conexionPostgreSQL));
 
 // CONFIGURACION JWT
 var jwtKey = builder.Configuration["Jwt:Key"];
@@ -77,7 +85,7 @@ if (app.Environment.IsDevelopment())
         using var scope = app.Services.CreateScope();
 
         var context = scope.ServiceProvider
-            .GetRequiredService<AlertaEscolarDbContext>();
+            .GetRequiredService<AlertaEscolarPostgreSqlDbContext>();
 
         adminCorreo = adminCorreo.Trim().ToLowerInvariant();
 

@@ -11,9 +11,10 @@ namespace AlertaEscolar.Api.Controllers
     [Authorize]
     public class CasosController : ControllerBase
     {
-        private readonly AlertaEscolarDbContext _context;
+        private readonly AlertaEscolarPostgreSqlDbContext _context;
 
-        public CasosController(AlertaEscolarDbContext context)
+        public CasosController(
+            AlertaEscolarPostgreSqlDbContext context)
         {
             _context = context;
         }

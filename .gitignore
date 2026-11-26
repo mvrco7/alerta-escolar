@@ -1,10 +1,33 @@
+
+# Archivos temporales de Visual Studio
 .vs/
 **/bin/
 **/obj/
+*.user
+*.suo
+
+# Variables de entorno y configuraciones locales
 **/.env
 **/.env.*
+**/secrets.json
 **/appsettings.Development.json
+**/appsettings.Local.json
+
 # Base de datos local de Alerta Escolar
 **/alertaescolar.db
 **/alertaescolar.db-shm
 **/alertaescolar.db-wal
+
+# Archivos de bases de datos SQLite
+**/*.db
+**/*.db-shm
+**/*.db-wal
+**/*.db-journal
+**/*.sqlite
+**/*.sqlite3
+
+# Certificados y claves privadas
+**/*.pfx
+**/*.p12
+**/*.key
+**/*.pem

@@ -15,12 +15,12 @@ namespace AlertaEscolar.Api.Controllers
     [Route("api/[controller]")]
     public class UsuariosController : ControllerBase
     {
-        private readonly AlertaEscolarDbContext _context;
+        private readonly AlertaEscolarPostgreSqlDbContext _context;
         private readonly IConfiguration _configuration;
         private readonly PasswordHasher<Usuario> _passwordHasher = new();
 
         public UsuariosController(
-            AlertaEscolarDbContext context,
+            AlertaEscolarPostgreSqlDbContext context,
             IConfiguration configuration)
         {
             _context = context;
